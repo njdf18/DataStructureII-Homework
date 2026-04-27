@@ -1,5 +1,6 @@
 #include "AdjMatrixGraph.hpp"
 #include <iostream>
+#include <limits>
 
 AdjMatrixGraph::AdjMatrixGraph(int n, bool d, bool w)
     : Graph(n, d, w), mat(n, std::vector<int>(n, 0)) {}
@@ -78,5 +79,85 @@ void AdjMatrixGraph::Print() const {
         for (auto x : row)
             std::cout << x << " ";
         std::cout << std::endl;
+    }
+}
+
+void AdjMatrixGraph::ShortestPath(const int v) {
+    s = std::vector<bool>(n, false);
+    dist = std::vector<int>(n);
+    constexpr int INF = std::numeric_limits<int>::max();
+
+    for (int i = 0; i < n; i++) {
+        if (mat[v][i] == 0 && i != v) {
+            dist[i] = INF;
+        } else {
+            dist[i] = mat[v][i];
+        }
+    }
+    s[v] = true;
+    dist[v] = 0;
+
+    for (int i = 0; i < n - 1; i++) {
+        int u = Choose(n);
+        if (u == -1) break;
+
+        s[u] = true;
+        for (int w = 0; w < n; w++) {
+            if (!s[w] && mat[u][w] != 0) {
+                if (dist[u] != INF && dist[u] + mat[u][w] < dist[w]) {
+                    dist[w] = dist[u] + mat[u][w];
+                }
+            }
+        }
+    }
+}
+
+int AdjMatrixGraph::Choose(int n) {
+    int u = -1;
+    int min_dist = std::numeric_limits<int>::max();
+
+    for (int i = 0; i < n; i++) {
+        if (!s[i] && dist[i] < min_dist) {
+            min_dist = dist[i];
+            u = i;
+        }
+    }
+    return u;
+}
+
+void AdjMatrixGraph::BellmanFord(const int v) {
+    dist = std::vector<int>(n, std::numeric_limits<int>::max());
+    dist[v] = 0;
+    const int INF = std::numeric_limits<int>::max();
+
+    for (int k = 1; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int u = 0; u < n; u++) {
+                if (mat[i][u] != 0) { // Edge exists
+                    if (dist[i] != INF && dist[i] + mat[i][u] < dist[u]) {
+                        dist[u] = dist[i] + mat[i][u];
+                    }
+                }
+            }
+        }
+    }
+}
+
+void AdjMatrixGraph::AllLengths() {
+    auto a = std::vector<std::vector<int>>(n, std::vector(n, 0));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            a[i][j] = mat[i][j];
+        }
+    }
+
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (a[i][k] + a[k][j] < a[i][j]) {
+                    a[i][j] = a[i][k] + a[k][j];
+                }
+            }
+        }
     }
 }

@@ -9,6 +9,9 @@ class AdjMatrixGraph : public Graph {
 private:
     std::vector<std::vector<int>> mat;
 
+    std::vector<bool> s;
+    std::vector<int> dist;
+
 public:
     AdjMatrixGraph(int n, bool d = false, bool w = false);
 
@@ -21,6 +24,11 @@ public:
     std::vector<Edge> getNeighbors(int u) const override;
     std::vector<std::tuple<int, int, int>> getAllEdges() const override;
     void Print() const override;
+
+    void ShortestPath(const  int v);
+    int Choose(int n);
+    void BellmanFord(const  int v);
+    void AllLengths();
 };
 
 #endif // ADJMATRIXGRAPH_HPP

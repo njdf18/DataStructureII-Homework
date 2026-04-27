@@ -17,20 +17,21 @@ struct Edge {
 // Graph 
 // ===============================
 class Graph {
+private:
+    bool* visited;  // 造訪過的節點(與Helper函式共用)
+    int num = 0;  // 節點數量
+    int* dfn;  // Depth-First Number
+    int* low;
+    std::stack<Edge> edgeStack;
+    virtual void DFSHelper(const int v);
+    virtual void DFNLowHelper(const int u, const int v);
+    virtual void BiconnectedHelper(const int u, const int v);
+
 protected:
     int n; // 節點數
     int e; // 邊數
     bool directed;  // 是否為有向圖
     bool weighted;  // 是否有權重
-
-    bool* visited;  // 造訪過的節點(與Helper函式共用)
-    int num = 0;  // 節點數量
-    int* dfn;  // Depth-First Number
-    int* low;  //
-    std::stack<Edge> edgeStack;  //
-    virtual void DFSHelper(const int v);
-    virtual void DFNLowHelper(const int u, const int v);
-    virtual void BiconnectedHelper(const int u, const int v);
 
 public:
     Graph(int n = 0, bool d = false, bool w = false)
