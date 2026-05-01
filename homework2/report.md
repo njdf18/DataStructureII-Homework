@@ -2,13 +2,13 @@
 
 作業二
 
-### 解題說明
-Graph: 圖的抽象類別，定義走訪(DFS, BFS)與基本元件操作(Components, DFNLow, Biconnected)。
-AdjListArrayGraph: 以相鄰串列實作的圖，支援有向/無向、加權/無加權的圖結構。
-AdjMatrixGraph: 以相鄰矩陣實作的圖，支援最短路徑演算法介面。
-Kruskal: Kruskal 演算法，以貪婪策略尋找無向加權圖的最小生成樹(MST)。
-Prim: Prim 演算法，由起始節點擴展尋找無向加權圖的最小生成樹(MST)。
-ActivityNetwork: 實作活動網路，包含拓撲排序(Topological Sort)與關鍵路徑計算(Critical Path)。
+## 解題說明
+1. Graph: 圖的抽象類別，定義走訪(DFS, BFS)與基本元件操作(Components, DFNLow, Biconnected)。
+2. AdjListArrayGraph: 以相鄰串列實作的圖，支援有向/無向、加權/無加權的圖結構。
+3. AdjMatrixGraph: 以相鄰矩陣實作的圖，支援最短路徑演算法介面。
+4. Kruskal: Kruskal 演算法，以貪婪策略尋找無向加權圖的最小生成樹(MST)。
+5. Prim: Prim 演算法，由起始節點擴展尋找無向加權圖的最小生成樹(MST)。
+6. ActivityNetwork: 實作活動網路，包含拓撲排序(Topological Sort)與關鍵路徑計算(Critical Path)。
 
 ### 解題策略
 Graph:
