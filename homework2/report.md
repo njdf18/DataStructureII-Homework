@@ -2,7 +2,7 @@
 
 作業二
 
-## 解題說明
+### 解題說明
 Graph: 圖的抽象類別，定義走訪(DFS, BFS)與基本元件操作(Components, DFNLow, Biconnected)。
 AdjListArrayGraph: 以相鄰串列實作的圖，支援有向/無向、加權/無加權的圖結構。
 AdjMatrixGraph: 以相鄰矩陣實作的圖，支援最短路徑演算法介面。
